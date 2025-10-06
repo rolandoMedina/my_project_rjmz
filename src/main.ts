@@ -10,6 +10,15 @@ async function bootstrap() {
     .setDescription('Prisma Service')
     .setVersion('1.0')
     .addTag('Prisma Service')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+      name: 'authorization',
+      description: 'Bearer token',
+    })
+    .addSecurityRequirements('bearer')
     .build()
 
   const document = SwaggerModule.createDocument(app, config);
